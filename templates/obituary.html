@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Loving Memory • {{ obit.name }} | Shammah Funeral Home</title>
+    
+    <!-- Font Awesome for real social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        body { 
+            margin:0; 
+            font-family:'Inter', sans-serif; 
+            background:#f8f5f2; 
+            color:#333; 
+        }
+        .memorial { 
+            max-width:920px; 
+            margin:20px auto; 
+            background:white; 
+            box-shadow:0 10px 50px rgba(0,0,0,0.15); 
+            border-radius:8px; 
+            overflow:hidden; 
+        }
+        
+        .header-bar {
+            background: #c8102e; 
+            color: white; 
+            padding: 15px 20px; 
+            text-align: center; 
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+        .hero {
+            position:relative; 
+            height:520px; 
+            background: linear-gradient(rgba(200,16,46,0.75), rgba(200,16,46,0.85)), 
+                        url('{{ obit.photo_url or "https://via.placeholder.com/900x520/c8102e/ffffff?text=In+Loving+Memory" }}');
+            background-size:cover; 
+            background-position:center; 
+            color:white; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            text-align:center;
+        }
+        .hero-content h2 { 
+            font-family:'Playfair Display',serif; 
+            font-size:2.4rem; 
+            margin:0; 
+            color:#ffd700; 
+        }
+        .hero-content h1 { 
+            font-family:'Playfair Display',serif; 
+            font-size:3.7rem; 
+            margin:12px 0 0; 
+            font-weight:400;
+        }
+        .dates { 
+            margin-top:30px; 
+            font-size:1.5rem; 
+            color:#fff; 
+        }
+        
+        .content { padding:60px 60px 80px; }
+        .section {
+            margin-bottom:45px; 
+            border-bottom:1px solid #eee; 
+            padding-bottom:35px;
+        }
+        .section:last-child { border-bottom:none; padding-bottom:0; }
+        .section h3 {
+            background:#c8102e; 
+            color:white; 
+            padding:16px 20px; 
+            margin:0 0 20px; 
+            font-size:1.4rem; 
+            cursor:pointer; 
+            display:flex; 
+            justify-content:space-between;
+        }
+        .section-content { 
+            display:none; 
+            padding:10px 15px; 
+            font-size:1.17rem; 
+            line-height:1.85; 
+        }
+        .section-content.show { display:block; }
+        
+        .peace { 
+            text-align:center; 
+            margin:70px 0 40px; 
+            font-size:1.8rem; 
+            color:#c8102e; 
+            font-style:italic; 
+        }
+
+        .footer {
+            background:#c8102e; 
+            color:white; 
+            text-align:center; 
+            padding:50px 20px 40px; 
+        }
+        .social-icons {
+            margin: 30px 0;
+        }
+        .social-icons a {
+            display: inline-block;
+            margin: 0 15px;
+            font-size: 2.1rem;
+            color: white;
+            transition: all 0.3s;
+        }
+        .social-icons a:hover {
+            transform: scale(1.25);
+            color: #ffeb3b;
+        }
+    </style>
+</head>
+<body>
+    <div class="memorial">
+        <div class="header-bar">
+            SHAMMAH FUNERAL HOME • Serving with Dignity & Compassion
+        </div>
+        
+        <div class="hero">
+            <div class="hero-content">
+                <h2>In Loving Memory</h2>
+                <h1>{{ obit.name }}</h1>
+                <div class="dates">{{ obit.birth_date }} — {{ obit.death_date }}</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h3 onclick="toggle(this)">📖 Biography <span>▼</span></h3>
+                <div class="section-content show">{{ obit.biography | replace('\n', '<br><br>') | safe }}</div>
+            </div>
+
+            <div class="section">
+                <h3 onclick="toggle(this)">🪦 Funeral Details <span>▼</span></h3>
+                <div class="section-content">
+                    <p><strong>Funeral Date:</strong> {{ obit.funeral_date or 'Not specified' }}</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 onclick="toggle(this)">📜 Service Programme <span>▼</span></h3>
+                <div class="section-content">
+                    {{ obit.service_programme | replace('\n', '<br><br>') | safe or '<p>No programme details added yet.</p>' }}
+                </div>
+            </div>
+
+            <div class="peace">May their soul rest in eternal peace 🕊️</div>
+        </div>
+
+        <!-- Footer with Real Social Icons -->
+        <div class="footer">
+            <strong>SHAMMAH FUNERAL HOME</strong><br>
+            Honouring Lives • Serving Families with Dignity<br><br>
+            
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/18trhyErRW/" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/shammahfunerals/" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@shammahfuneralhome" target="_blank" title="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+            
+            <small>Scan this QR code to visit this memorial anytime</small>
+        </div>
+    </div>
+
+    <script>
+        function toggle(el) {
+            const content = el.nextElementSibling;
+            content.classList.toggle('show');
+            const arrow = el.querySelector('span');
+            arrow.textContent = content.classList.contains('show') ? '▲' : '▼';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Obituaries | Shammah Funeral Home</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500&display=swap');
+        body { font-family:'Inter',sans-serif; background:#f8f5f2; margin:0; padding:30px; }
+        .container { 
+            max-width:1200px; 
+            margin:auto; 
+            background:white; 
+            padding:30px; 
+            border-radius:12px; 
+            box-shadow:0 10px 40px rgba(0,0,0,0.1); 
+        }
+        h1 { 
+            font-family:'Playfair Display',serif; 
+            color:#c8102e; 
+            text-align:center; 
+            margin-bottom:30px;
+        }
+        table { width:100%; border-collapse:collapse; margin:30px 0; }
+        th { 
+            background:#c8102e; 
+            color:white; 
+            padding:16px; 
+            text-align:left; 
+        }
+        td { 
+            padding:16px; 
+            border-bottom:1px solid #eee; 
+            vertical-align: middle; 
+        }
+        img.qr { width:120px; height:120px; border:2px solid #ddd; }
+        .actions a { 
+            margin-right: 15px; 
+            color: #c8102e; 
+            text-decoration: none; 
+            font-weight: 500; 
+        }
+        .actions a:hover { color: #a00d24; }
+        .btn { 
+            background:#c8102e; 
+            color:white; 
+            padding:14px 28px; 
+            border-radius:50px; 
+            text-decoration:none; 
+            display:inline-block; 
+            margin:10px 5px; 
+        }
+        .btn:hover { background:#a00d24; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Obituaries</h1>
+        <a href="/create" class="btn">+ Create New Obituary</a>
+        
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Dates</th>
+                <th>Funeral Date</th>
+                <th>QR Code</th>
+                <th>Actions</th>
+            </tr>
+            {% for obit in obits %}
+            <tr>
+                <td><strong>{{ obit.name }}</strong></td>
+                <td>{{ obit.birth_date }} — {{ obit.death_date }}</td>
+                <td>{{ obit.funeral_date or '—' }}</td>
+                <td><img src="/static/qr/{{ obit.id }}.png" class="qr" alt="QR"></td>
+                <td class="actions">
+                    <a href="/obituary/{{ obit.id }}">View</a>
+                    <a href="/edit/{{ obit.id }}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/" class="btn">← Back to Home</a>
+    </div>
+</body>
+</html>

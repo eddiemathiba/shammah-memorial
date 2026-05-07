@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shammah Funeral Home • Memorial QR</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        body { 
+            margin:0; 
+            font-family:'Inter', sans-serif; 
+            background: #c8102e; 
+            color:white; 
+        }
+        .container { 
+            max-width:1000px; 
+            margin:40px auto; 
+            padding:20px; 
+            text-align:center; 
+        }
+        .logo {
+            width: 110px;
+            height: 110px;
+            margin-bottom: 10px;
+        }
+        h1 { 
+            font-family:'Playfair Display',serif; 
+            font-size: 3.4rem; 
+            margin: 10px 0 5px 0; 
+            letter-spacing: 2px;
+        }
+        .tagline { 
+            font-size:1.4rem; 
+            color:#ffeb3b; 
+            margin-bottom: 60px; 
+        }
+        .card { 
+            background:white; 
+            color:#333; 
+            border-radius:12px; 
+            padding:60px 40px; 
+            box-shadow:0 15px 40px rgba(0,0,0,0.2); 
+        }
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            margin: 12px 10px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #c8102e;
+            color: white;
+            padding: 18px 45px;
+        }
+        .btn-primary:hover {
+            background: #a00d24;
+            transform: translateY(-3px);
+        }
+        .btn-secondary {
+            background: #333;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #555;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <img src="/static/logo.png" alt="Shammah Funeral Home" class="logo">
+        
+        <h1>SHAMMAH FUNERAL HOME</h1>
+        <p class="tagline">Memorial QR System</p>
+        
+        <div class="card">
+            <h2 style="color:#c8102e; margin-bottom:25px;">Honour Their Memory</h2>
+            <p style="font-size:1.15rem; max-width:700px; margin:0 auto 45px; line-height:1.6;">
+                Create beautiful virtual obituaries and generate unique QR codes for tombstones, 
+                funeral programmes, and family memorials.
+            </p>
+            
+            <a href="/create" class="btn btn-primary">+ Create New Obituary</a>
+            <a href="/admin" class="btn btn-secondary">Manage Obituaries</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scan QR Code</title>
+    <style> /* same CSS as index.html */ </style>
+    <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>📱 Scan QR Code</h1>
+    <div id="reader" style="width:100%; max-width:600px; margin:0 auto;"></div>
+    <p style="text-align:center; margin-top:20px;">Point your camera at any obituary QR code</p>
+    <a href="/">← Back to Home</a>
+</div>
+
+<script>
+    function onScanSuccess(decodedText, decodedResult) {
+        if (decodedText.startsWith('http')) {
+            window.location.href = decodedText;
+        } else {
+            alert('QR code scanned but not a valid obituary link: ' + decodedText);
+        }
+    }
+
+    const html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", 
+        { fps: 10, qrbox: { width: 250, height: 250 } },
+        false
+    );
+    html5QrcodeScanner.render(onScanSuccess);
+</script>
+</body>
+</html>
