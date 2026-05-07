@@ -60,7 +60,7 @@ def create():
         conn.commit()
         conn.close()
 
-        # Dynamic QR Code for Render / Local
+        # Generate QR Code
         base_url = os.environ.get('RENDER_EXTERNAL_HOSTNAME', '127.0.0.1:5000')
         protocol = "https" if "render" in base_url else "http"
         qr_data = f"{protocol}://{base_url}/obituary/{obit_id}"
@@ -99,7 +99,6 @@ def edit(obit_id):
                      (name, birth_date, death_date, funeral_date, biography, service_programme, photo_url, obit_id))
         conn.commit()
         conn.close()
-
         return redirect('/admin')
 
     row = conn.execute('SELECT * FROM obituaries WHERE id = ?', (obit_id,)).fetchone()
@@ -109,7 +108,24 @@ def edit(obit_id):
 
     return render_template('edit.html', obit=dict(row))
 
-# ====================== OBITUARY PAGE ======================
+# ====================== DELETE ======================
+@app.route('/delete/<obit_id>')
+def delete(obit_id):
+    conn = sqlite3.connect(DB_FILE)
+    
+    # Delete QR code file
+    qr_path = f'static/qr/{obit_id}.png'
+    if os.path.exists(qr_path):
+        os.remove(qr_path)
+    
+    # Delete from database
+    conn.execute('DELETE FROM obituaries WHERE id = ?', (obit_id,))
+    conn.commit()
+    conn.close()
+    
+    return redirect('/admin')
+
+# ====================== VIEW OBITUARY ======================
 @app.route('/obituary/<obit_id>')
 def obituary(obit_id):
     conn = sqlite3.connect(DB_FILE)

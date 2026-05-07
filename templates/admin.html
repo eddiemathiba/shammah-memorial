@@ -34,12 +34,19 @@
         }
         img.qr { width:120px; height:120px; border:2px solid #ddd; }
         .actions a { 
-            margin-right: 15px; 
+            margin-right: 12px; 
             color: #c8102e; 
             text-decoration: none; 
             font-weight: 500; 
         }
         .actions a:hover { color: #a00d24; }
+        .btn-delete {
+            color: #c8102e;
+            font-weight: 600;
+        }
+        .btn-delete:hover {
+            color: #a00d24;
+        }
         .btn { 
             background:#c8102e; 
             color:white; 
@@ -49,7 +56,6 @@
             display:inline-block; 
             margin:10px 5px; 
         }
-        .btn:hover { background:#a00d24; }
     </style>
 </head>
 <body>
@@ -74,11 +80,20 @@
                 <td class="actions">
                     <a href="/obituary/{{ obit.id }}">View</a>
                     <a href="/edit/{{ obit.id }}">Edit</a>
+                    <a href="#" onclick="confirmDelete('{{ obit.id }}', '{{ obit.name }}')" class="btn-delete">Delete</a>
                 </td>
             </tr>
             {% endfor %}
         </table>
         <a href="/" class="btn">← Back to Home</a>
     </div>
+
+    <script>
+        function confirmDelete(obit_id, name) {
+            if (confirm(`Are you sure you want to permanently delete "${name}"?\n\nThis action cannot be undone.`)) {
+                window.location.href = `/delete/${obit_id}`;
+            }
+        }
+    </script>
 </body>
 </html>
